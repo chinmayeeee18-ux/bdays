@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>happy birthday shubhi 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg1:#e4cdd0;--bg2:#ddc8cc;--bg3:#d9c4ca;
+  --pink:#b86870;--pinkl:#d4949a;--pinkxl:#edcdd2;
+  --card:rgba(255,248,250,0.60);--cb:rgba(180,110,118,0.18);
+  --text:#28141a;--textm:#5a3038;--textl:#8a5560;
+}
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;color:var(--text);}
+
+#spark-canvas{position:fixed;inset:0;z-index:9999;pointer-events:none;}
+
+#petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.petal{position:absolute;bottom:-30px;opacity:0;animation:pFloat linear infinite;user-select:none;pointer-events:none;}
+@keyframes pFloat{
+  0%{opacity:0;transform:translateY(0) rotate(0deg);}
+  8%{opacity:0.45;}85%{opacity:0.22;}
+  100%{opacity:0;transform:translateY(-112vh) rotate(420deg) translateX(14px);}
+}
+
+.conf{position:fixed;pointer-events:none;z-index:500;border-radius:2px;animation:confFall var(--d,2s) ease-out forwards;}
+@keyframes confFall{0%{opacity:1;transform:translateY(0) rotate(0deg) scale(1);}100%{opacity:0;transform:translateY(340px) rotate(780deg) scale(0.3);}}
+
+.page{
+  position:fixed;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:44px 24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .85s cubic-bezier(.4,0,.2,1),transform .85s cubic-bezier(.4,0,.2,1);
+  transform:translateY(36px);overflow-y:auto;z-index:1;
+}
+.page.active{opacity:1;pointer-events:all;transform:translateY(0);}
+.page.out{opacity:0;transform:translateY(-36px);pointer-events:none;}
+
+/* PAGE 1 */
+#p1{background:linear-gradient(148deg,var(--bg1),#d8c0c4);text-align:center;}
+.p1-eye{font-size:.67rem;letter-spacing:4.5px;text-transform:uppercase;color:var(--textl);margin-bottom:26px;opacity:0;animation:fUp .9s .2s ease forwards;}
+.p1-tag{font-family:'Dancing Script',cursive;font-size:clamp(1.8rem,5vw,2.7rem);color:var(--textm);margin-bottom:20px;opacity:0;animation:fUp .9s .55s ease forwards;}
+#cnum{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(9rem,28vw,14rem);color:var(--pink);line-height:1;display:inline-block;text-shadow:0 4px 50px rgba(184,104,112,.38);transition:opacity .28s ease,transform .28s ease;}
+#cnum.out{opacity:0;transform:scale(.58);}
+.p1-hint{font-size:.67rem;letter-spacing:3px;text-transform:uppercase;color:var(--textl);margin-top:22px;opacity:0;animation:fUp .9s 1.5s ease forwards;}
+
+/* PAGE 2 */
+#p2{background:linear-gradient(152deg,var(--bg2),#d4b8be);text-align:center;gap:0;}
+.hb-wrap{opacity:0;animation:fUp .9s .1s ease forwards;}
+.hb-happy{font-family:'Dancing Script',cursive;font-size:clamp(2.7rem,9.5vw,5.8rem);font-weight:600;color:var(--text);line-height:1.1;position:relative;display:inline-block;}
+.hb-happy::after{content:'';position:absolute;left:-6px;right:-6px;top:8%;bottom:8%;background:radial-gradient(ellipse,rgba(184,104,112,.42) 0%,transparent 70%);z-index:-1;filter:blur(16px);}
+.hb-name{font-family:'Dancing Script',cursive;font-size:clamp(2.7rem,9.5vw,5.8rem);font-weight:700;color:var(--pink);display:block;line-height:1.1;text-shadow:0 2px 22px rgba(184,104,112,.38);}
+.hb-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;color:var(--textl);margin-top:12px;letter-spacing:.7px;}
+.word{opacity:0;display:inline-block;transition:opacity .45s ease,transform .45s ease;transform:translateY(8px);}
+.word.show{opacity:1;transform:translateY(0);}
+
+.cake-wrap{margin:28px auto 18px;width:148px;height:182px;filter:drop-shadow(0 7px 20px rgba(160,80,90,.24));opacity:0;animation:fUp .9s .65s ease forwards,cBob 4s 1.5s ease-in-out infinite;}
+@keyframes cBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.flame{animation:flick .86s ease-in-out infinite alternate;}
+@keyframes flick{from{transform:scaleY(1) scaleX(1);opacity:1;}to{transform:scaleY(1.22) scaleX(.82);opacity:.78;}}
+
+.tap-btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:12px 28px;background:transparent;border:1.5px solid var(--pinkl);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.73rem;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--textm);cursor:pointer;transition:all .32s ease;position:relative;overflow:hidden;opacity:0;animation:fUp .9s 1.1s ease forwards;}
+.tap-btn::before{content:'';position:absolute;inset:0;background:var(--pinkxl);transform:scaleX(0);transform-origin:left;transition:transform .32s ease;z-index:-1;border-radius:inherit;}
+.tap-btn:hover::before{transform:scaleX(1);}
+.tap-btn:hover{color:var(--text);transform:translateY(-2px);box-shadow:0 5px 18px rgba(160,80,90,.18);}
+.tap-arr{display:inline-block;transition:transform .28s ease;}
+.tap-btn:hover .tap-arr{transform:translateY(4px);}
+
+#msg-panel{max-width:440px;width:100%;margin-top:24px;opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease;pointer-events:none;}
+#msg-panel.on{opacity:1;transform:translateY(0);pointer-events:all;}
+.msg-box{background:var(--card);border:1px solid var(--cb);border-radius:20px;padding:24px 22px 18px;text-align:left;backdrop-filter:blur(12px);}
+.msg-from{font-size:.61rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--pinkl);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.msg-from::after{content:'';flex:1;height:1px;background:var(--pinkxl);}
+#typed-msg{font-family:'Instrument Serif',serif;font-size:.99rem;line-height:1.88;color:var(--textm);min-height:66px;white-space:pre-wrap;}
+.cur{display:inline-block;width:1.5px;height:1.05em;background:var(--pink);vertical-align:middle;margin-left:1px;animation:blink .9s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.msg-sign{margin-top:13px;padding-top:12px;border-top:1px solid var(--pinkxl);font-family:'Dancing Script',cursive;font-size:1.02rem;color:var(--pinkl);text-align:right;opacity:0;transition:opacity .8s ease;}
+.go-next{display:inline-flex;align-items:center;gap:7px;margin-top:22px;padding:11px 24px;background:var(--card);border:1px solid var(--cb);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.71rem;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--textm);cursor:pointer;backdrop-filter:blur(8px);opacity:0;transition:opacity .6s ease,transform .3s ease,box-shadow .3s ease;}
+.go-next.show{opacity:1;}
+.go-next:hover{background:var(--pinkxl);transform:translateY(-2px);box-shadow:0 4px 13px rgba(160,80,90,.16);}
+
+/* PAGE 3 */
+#p3{background:linear-gradient(148deg,var(--bg3),#ceb4ba);gap:0;padding:50px 22px 62px;}
+.r-hd{text-align:center;margin-bottom:32px;opacity:0;animation:fUp .9s .15s ease forwards;}
+.r-eye{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--textl);margin-bottom:8px;}
+.r-title{font-family:'Dancing Script',cursive;font-size:clamp(2.2rem,6.5vw,3.6rem);font-weight:600;color:var(--text);}
+.r-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--pink);}
+.r-line{width:36px;height:1px;background:var(--pinkxl);margin:12px auto 0;}
+.r-stage{max-width:420px;width:100%;}
+.r-card{background:var(--card);border:1px solid var(--cb);border-radius:18px;padding:28px 22px;text-align:center;min-height:145px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;backdrop-filter:blur(12px);box-shadow:0 4px 30px rgba(140,70,80,.07);position:relative;overflow:hidden;}
+.r-card::before{content:'';position:absolute;top:-44px;right:-44px;width:106px;height:106px;background:radial-gradient(circle,var(--pinkxl) 0%,transparent 70%);opacity:.5;}
+.r-num{font-size:.62rem;letter-spacing:3px;color:var(--pinkl);}
+.r-emoji{font-size:1.82rem;animation:ePop .5s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes ePop{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+.r-text{font-family:'Instrument Serif',serif;font-size:1.01rem;line-height:1.72;color:var(--textm);font-style:italic;}
+.r-ph{font-size:.78rem;font-weight:300;color:var(--textl);}
+.r-card.pop{animation:cPop .52s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes cPop{from{opacity:0;transform:scale(.87) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.dots{display:flex;gap:5px;margin-top:14px;justify-content:center;flex-wrap:wrap;}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--pinkxl);transition:background .3s,transform .3s;}
+.dot.on{background:var(--pink);transform:scale(1.35);}
+.r-btn{margin-top:18px;display:inline-flex;align-items:center;gap:7px;padding:11px 25px;background:var(--pinkxl);border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.73rem;font-weight:300;letter-spacing:2.5px;text-transform:uppercase;color:var(--textm);cursor:pointer;transition:background .28s,transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s;}
+.r-btn:hover{background:var(--pinkl);color:var(--text);transform:scale(1.04);box-shadow:0 5px 16px rgba(160,80,90,.24);}
+.r-btn:active{transform:scale(.95);}
+.r-btn:disabled{opacity:.28;pointer-events:none;}
+.final-wrap{max-width:420px;width:100%;margin-top:24px;opacity:0;transform:translateY(12px);transition:opacity .85s ease,transform .85s ease;pointer-events:none;}
+.final-wrap.on{opacity:1;transform:translateY(0);pointer-events:all;}
+.final-box{background:var(--card);border:1px solid var(--cb);border-radius:18px;padding:20px 18px 16px;text-align:center;}
+.final-text{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--textm);line-height:1.65;font-weight:500;}
+.final-hearts{margin-top:9px;font-size:.9rem;letter-spacing:6px;color:var(--pink);}
+
+/* MUSIC BTN */
+#mbtn{position:fixed;top:16px;right:16px;z-index:600;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--cb);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:transform .25s,box-shadow .25s;box-shadow:0 2px 10px rgba(150,70,80,.13);}
+#mbtn:hover{transform:scale(1.12);box-shadow:0 4px 14px rgba(150,70,80,.22);}
+#mbtn.off{opacity:.42;}
+
+/* YouTube players — hidden but present for API */
+#yt-player1,#yt-player2{position:fixed;bottom:-600px;left:-600px;width:1px;height:1px;opacity:0;pointer-events:none;}
+
+@keyframes fUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--pinkxl);border-radius:2px;}
+@media(max-width:480px){.msg-box,.r-card{padding:20px 15px;}.hb-happy,.hb-name{font-size:clamp(2.4rem,9vw,3.7rem);}}
+</style>
+</head>
+<body>
+
+<canvas id="spark-canvas"></canvas>
+<div id="petals"></div>
+
+<!-- YouTube IFrame API players -->
+<div id="yt-player1"></div>
+<div id="yt-player2"></div>
+
+<button id="mbtn" onclick="toggleM()" title="music">♪</button>
+
+<!-- YouTube IFrame API script -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="p1-eye">a very special day ✦</div>
+  <div class="p1-tag">it's your day! 🎀</div>
+  <span id="cnum">3</span>
+  <div class="p1-hint">get ready ✦</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="hb-wrap" id="hb-wrap">
+    <span class="hb-happy" id="hb-happy"></span><br>
+    <span class="hb-name" id="hb-name"></span>
+    <div class="hb-sub" id="hb-sub" style="opacity:0;transition:opacity .7s ease;">wishing you all the love today &amp; always 🌸</div>
+  </div>
+
+  <div class="cake-wrap">
+    <svg viewBox="0 0 148 182" fill="none" xmlns="http://www.w3.org/2000/svg" width="148" height="182">
+      <ellipse cx="74" cy="176" rx="52" ry="5.5" fill="#b06870" opacity=".18"/>
+      <rect x="7" y="120" width="134" height="52" rx="14" fill="#edcdd4"/>
+      <rect x="7" y="120" width="134" height="17" rx="8" fill="#dca8b2"/>
+      <ellipse cx="24" cy="120" rx="8" ry="6.5" fill="#fff0f2"/><ellipse cx="49" cy="117" rx="8" ry="7.5" fill="#fff0f2"/><ellipse cx="74" cy="116" rx="9.5" ry="8" fill="#fff0f2"/><ellipse cx="99" cy="117" rx="8" ry="7.5" fill="#fff0f2"/><ellipse cx="124" cy="120" rx="8" ry="6.5" fill="#fff0f2"/>
+      <rect x="33" y="137" width="12" height="4" rx="2" fill="#dc9098" transform="rotate(-22 33 137)"/>
+      <rect x="62" y="145" width="12" height="4" rx="2" fill="#b0a0cc" transform="rotate(14 62 145)"/>
+      <rect x="96" y="140" width="11" height="4" rx="2" fill="#94b8d8" transform="rotate(-10 96 140)"/>
+      <rect x="46" y="155" width="10" height="4" rx="2" fill="#dcb490" transform="rotate(26 46 155)"/>
+      <rect x="85" y="157" width="12" height="4" rx="2" fill="#dc9098" transform="rotate(-25 85 157)"/>
+      <text x="15" y="157" font-size="8.5" fill="#dcacb4">✦</text><text x="117" y="162" font-size="8.5" fill="#b0a0cc">✦</text>
+      <rect x="22" y="73" width="104" height="51" rx="12" fill="#e8b8c2"/>
+      <rect x="22" y="73" width="104" height="16" rx="8" fill="#d89caa"/>
+      <ellipse cx="38" cy="73" rx="7" ry="6" fill="#fff0f2"/><ellipse cx="60" cy="70" rx="7.5" ry="7" fill="#fff0f2"/><ellipse cx="84" cy="71" rx="8.5" ry="7" fill="#fff0f2"/><ellipse cx="108" cy="70" rx="7" ry="7" fill="#fff0f2"/>
+      <circle cx="46" cy="90" r="4" fill="#fff0f2" opacity=".8"/><circle cx="74" cy="94" r="5" fill="#e0b0b8" opacity=".7"/><circle cx="102" cy="90" r="4" fill="#fff0f2" opacity=".8"/>
+      <text x="65" y="110" font-size="12" fill="#dc9098">♡</text>
+      <rect x="39" y="37" width="70" height="40" rx="11" fill="#dca8bc"/>
+      <rect x="39" y="37" width="70" height="14" rx="7" fill="#c888a0"/>
+      <ellipse cx="53" cy="37" rx="6.5" ry="5.5" fill="#fff0f2"/><ellipse cx="74" cy="35" rx="7.5" ry="6" fill="#fff0f2"/><ellipse cx="95" cy="37" rx="6.5" ry="5.5" fill="#fff0f2"/>
+      <circle cx="58" cy="52" r="3" fill="#fff0f2"/><circle cx="74" cy="56" r="4" fill="#fff4f6"/><circle cx="90" cy="52" r="3" fill="#fff0f2"/>
+      <rect x="55" y="13" width="8" height="26" rx="4" fill="#edc0d0"/><ellipse cx="59" cy="13" rx="4" ry="2.5" fill="#c888a0"/>
+      <g class="flame" style="transform-origin:59px 9px"><ellipse cx="59" cy="6" rx="4" ry="7" fill="#ffd580" opacity=".9"/><ellipse cx="59" cy="4" rx="2.5" ry="4.5" fill="#ffe8a0"/><ellipse cx="59" cy="11" rx="1.5" ry="2" fill="#ff9a70" opacity=".6"/></g>
+      <ellipse cx="59" cy="13" rx="7" ry="3.5" fill="#ffd580" opacity=".13"/>
+      <rect x="70" y="9" width="8" height="30" rx="4" fill="#c4b4dc"/><ellipse cx="74" cy="9" rx="4" ry="2.5" fill="#a490c4"/>
+      <g class="flame" style="transform-origin:74px 5px;animation-delay:.28s"><ellipse cx="74" cy="2" rx="4" ry="7" fill="#ffd580" opacity=".9"/><ellipse cx="74" cy="0" rx="2.5" ry="4.5" fill="#ffe8a0"/><ellipse cx="74" cy="7" rx="1.5" ry="2" fill="#ff9a70" opacity=".6"/></g>
+      <ellipse cx="74" cy="9" rx="7" ry="3.5" fill="#ffd580" opacity=".13"/>
+      <rect x="85" y="15" width="8" height="24" rx="4" fill="#a0c4dc"/><ellipse cx="89" cy="15" rx="4" ry="2.5" fill="#80a8c8"/>
+      <g class="flame" style="transform-origin:89px 11px;animation-delay:.55s"><ellipse cx="89" cy="8" rx="4" ry="7" fill="#ffd580" opacity=".9"/><ellipse cx="89" cy="6" rx="2.5" ry="4.5" fill="#ffe8a0"/><ellipse cx="89" cy="13" rx="1.5" ry="2" fill="#ff9a70" opacity=".6"/></g>
+      <ellipse cx="89" cy="15" rx="7" ry="3.5" fill="#ffd580" opacity=".13"/>
+    </svg>
+  </div>
+
+  <button class="tap-btn" id="tap-btn" onclick="revealMsg()">
+    tap here for your message <span class="tap-arr">↓</span>
+  </button>
+
+  <div id="msg-panel">
+    <div class="msg-box">
+      <div class="msg-from">for shubhi, with love</div>
+      <div id="typed-msg"></div>
+      <div class="msg-sign" id="msg-sign"></div>
+    </div>
+  </div>
+
+  <button class="go-next" id="go-next" onclick="goTo(3)">reasons I adore you &nbsp;→</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <div class="r-hd">
+    <div class="r-eye">a little list ✦</div>
+    <div class="r-title">reasons I <em>adore</em> you</div>
+    <div class="r-line"></div>
+  </div>
+  <div class="r-stage">
+    <div class="r-card" id="r-card"><div class="r-ph">tap the button to find out ✦</div></div>
+    <div class="dots" id="dots"></div>
+    <div style="text-align:center">
+      <button class="r-btn" id="r-btn" onclick="showReason()">✦ &nbsp;reveal a reason</button>
+    </div>
+  </div>
+  <div class="final-wrap" id="final-wrap">
+    <div class="final-box">
+      <div class="final-text">
+        "i could write pages and pages about you, but it still wouldn't fully explain how much i adore you. you are my absolute favourite thing about this world, and i hope you know that every single day and i love you the most"
+      </div>
+      <div class="final-hearts">♡ &nbsp; ♡ &nbsp; ♡</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════
+   YOUTUBE IFRAME API
+   - player1 = hype track  (OWKag_BKXJQ)  → plays on page 2 load
+   - player2 = romantic    (OMOGaugKpzs)   → plays when message tapped
+   Both stop when page switches.
+══════════════════════════════════ */
+const VID1 = 'OWKag_BKXJQ';
+const VID2 = 'OMOGaugKpzs';
+
+let player1, player2, playersReady = 0;
+let pendingPlay = null; // track to play once both players ready
+let activePlayer = null;
+
+function onYouTubeIframeAPIReady(){
+  player1 = new YT.Player('yt-player1', {
+    height:'1', width:'1',
+    videoId: VID1,
+    playerVars:{ autoplay:0, controls:0, loop:1, playlist:VID1, rel:0, modestbranding:1 },
+    events:{ onReady: onP1Ready }
+  });
+  player2 = new YT.Player('yt-player2', {
+    height:'1', width:'1',
+    videoId: VID2,
+    playerVars:{ autoplay:0, controls:0, loop:1, playlist:VID2, rel:0, modestbranding:1 },
+    events:{ onReady: onP2Ready }
+  });
+}
+
+function onP1Ready(){ playersReady++; checkPending(); }
+function onP2Ready(){ playersReady++; checkPending(); }
+
+function checkPending(){
+  if(playersReady >= 2 && pendingPlay !== null){
+    _doPlay(pendingPlay);
+    pendingPlay = null;
+  }
+}
+
+function _doPlay(which){
+  // stop both first
+  try{ player1.stopVideo(); }catch(e){}
+  try{ player2.stopVideo(); }catch(e){}
+  if(which === 1){ player1.playVideo(); activePlayer = player1; }
+  else           { player2.playVideo(); activePlayer = player2; }
+  mOn = true;
+  const b = document.getElementById('mbtn');
+  b.textContent='♪'; b.classList.remove('off');
+}
+
+function playTrack(which){
+  if(playersReady >= 2){ _doPlay(which); }
+  else { pendingPlay = which; }
+}
+
+function stopAll(){
+  try{ player1.stopVideo(); }catch(e){}
+  try{ player2.stopVideo(); }catch(e){}
+  activePlayer = null; mOn = false;
+  const b = document.getElementById('mbtn');
+  b.textContent='♫'; b.classList.add('off');
+}
+
+let mOn = false;
+function toggleM(){
+  if(mOn){
+    try{ activePlayer && activePlayer.pauseVideo(); }catch(e){}
+    mOn = false;
+    document.getElementById('mbtn').textContent='♫';
+    document.getElementById('mbtn').classList.add('off');
+  } else {
+    try{ activePlayer && activePlayer.playVideo(); }catch(e){}
+    mOn = true;
+    document.getElementById('mbtn').textContent='♪';
+    document.getElementById('mbtn').classList.remove('off');
+  }
+}
+
+/* ══════════════════════════════════
+   SPARK CANVAS
+══════════════════════════════════ */
+const canvas = document.getElementById('spark-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resizeCanvas(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+
+const SPARK_COLS=['#e8a0ac','#c4b0e0','#a0c4e0','#f5d0b0','#e8b4c8','#fff0b8','#c8f0d8'];
+const sparks=[];
+
+class Spark{
+  constructor(x,y){
+    this.x=x; this.y=y;
+    const ang=Math.random()*Math.PI*2;
+    const spd=0.6+Math.random()*2.0;
+    this.vx=Math.cos(ang)*spd;
+    this.vy=Math.sin(ang)*spd-0.8;
+    this.life=1;
+    this.decay=.009+Math.random()*.011;
+    this.r=2+Math.random()*3;
+    this.col=SPARK_COLS[~~(Math.random()*SPARK_COLS.length)];
+    this.trail=[];
+    this.type=Math.random()>.5?'circle':'star';
+  }
+  update(){
+    this.trail.push({x:this.x,y:this.y});
+    if(this.trail.length>6)this.trail.shift();
+    this.vy+=.038;
+    this.x+=this.vx; this.y+=this.vy;
+    this.life-=this.decay;
+  }
+  draw(){
+    for(let i=0;i<this.trail.length;i++){
+      const a=(i/this.trail.length)*this.life*.45;
+      ctx.globalAlpha=a; ctx.fillStyle=this.col;
+      ctx.beginPath(); ctx.arc(this.trail[i].x,this.trail[i].y,this.r*.5,0,Math.PI*2); ctx.fill();
+    }
+    ctx.globalAlpha=this.life; ctx.fillStyle=this.col;
+    if(this.type==='star') drawStar(ctx,this.x,this.y,this.r*1.4);
+    else{ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fill(); }
+    ctx.globalAlpha=1;
+  }
+}
+
+function drawStar(c,x,y,r){
+  c.save(); c.translate(x,y); c.beginPath();
+  for(let i=0;i<5;i++){
+    const a=(i*4*Math.PI/5)-Math.PI/2, b=a+Math.PI/5;
+    i===0?c.moveTo(Math.cos(a)*r,Math.sin(a)*r):c.lineTo(Math.cos(a)*r,Math.sin(a)*r);
+    c.lineTo(Math.cos(b)*(r*.4),Math.sin(b)*(r*.4));
+  }
+  c.closePath(); c.fill(); c.restore();
+}
+
+function sparkBurst(x,y,count=18){
+  for(let i=0;i<count;i++) sparks.push(new Spark(x,y));
+}
+function loop(){
+  ctx.clearRect(0,0,W,H);
+  for(let i=sparks.length-1;i>=0;i--){
+    sparks[i].update(); sparks[i].draw();
+    if(sparks[i].life<=0) sparks.splice(i,1);
+  }
+  requestAnimationFrame(loop);
+}
+loop();
+document.addEventListener('click',e=>sparkBurst(e.clientX,e.clientY,22));
+document.addEventListener('touchstart',e=>{ for(const t of e.touches) sparkBurst(t.clientX,t.clientY,22); },{passive:true});
+
+/* ══════════════════════════════════
+   PETALS
+══════════════════════════════════ */
+const PS=['🌸','🌷','✦','·','˚','✿'],PC=['#b86870','#a090c0','#80aac8','#d4a0a8'];
+function mkP(){
+  const e=document.createElement('span'); e.className='petal';
+  e.textContent=PS[~~(Math.random()*PS.length)];
+  e.style.cssText=`left:${Math.random()*100}vw;font-size:${.44+Math.random()*.68}rem;color:${PC[~~(Math.random()*4)]};animation-duration:${10+Math.random()*12}s;animation-delay:${Math.random()*3}s`;
+  document.getElementById('petals').appendChild(e); setTimeout(()=>e.remove(),26000);
+}
+setInterval(mkP,1000); for(let i=0;i<8;i++) setTimeout(mkP,i*140);
+
+/* ══════════════════════════════════
+   CONFETTI BURST
+══════════════════════════════════ */
+const CC=['#e8a0ac','#c4b0e0','#a0c4e0','#f5d0a0','#e8d098','#b0e0c0','#f0a8b8'];
+function confettiBurst(){
+  const cx=innerWidth/2, cy=innerHeight/2;
+  for(let i=0;i<90;i++){
+    setTimeout(()=>{
+      const el=document.createElement('div'); el.className='conf';
+      const ang=Math.random()*Math.PI*2, spd=140+Math.random()*360;
+      const tx=Math.cos(ang)*spd, ty=Math.sin(ang)*spd-160;
+      const d=(1.6+Math.random()*.8)+'s';
+      el.style.cssText=`left:${cx+(Math.random()-.5)*80}px;top:${cy}px;width:${6+~~(Math.random()*7)}px;height:${6+~~(Math.random()*7)}px;background:${CC[~~(Math.random()*CC.length)]};border-radius:${Math.random()>.5?'50%':'2px'};transform:translate(${tx}px,${ty}px);--d:${d}`;
+      document.body.appendChild(el); setTimeout(()=>el.remove(),2600);
+    },i*16);
+  }
+}
+
+/* ══════════════════════════════════
+   PAGE SWITCH — stops music on switch
+══════════════════════════════════ */
+let curP=1;
+function goTo(n){
+  // stop music when leaving page 2 to page 3
+  if(curP===2 && n===3) stopAll();
+
+  const from=document.getElementById('p'+curP);
+  const to=document.getElementById('p'+n);
+  from.classList.add('out'); from.classList.remove('active');
+  setTimeout(()=>from.classList.remove('out'),950);
+  to.style.cssText='transform:translateY(40px);opacity:0;';
+  setTimeout(()=>{ to.classList.add('active'); to.style.cssText=''; curP=n; },60);
+}
+
+/* ══════════════════════════════════
+   COUNTDOWN
+══════════════════════════════════ */
+let cv=3; const cEl=document.getElementById('cnum');
+function tick(){
+  cEl.classList.add('out');
+  setTimeout(()=>{
+    cv--;
+    if(cv>0){ cEl.textContent=cv; cEl.classList.remove('out'); setTimeout(tick,1000); }
+    else{
+      cEl.style.transition='none'; cEl.textContent='🎉';
+      cEl.style.fontSize='clamp(5rem,18vw,9rem)'; cEl.classList.remove('out');
+      setTimeout(()=>{
+        confettiBurst();
+        sparkBurst(innerWidth/2,innerHeight/2,40);
+        setTimeout(()=>{
+          goTo(2);
+          document.getElementById('mbtn').style.display='flex';
+          setTimeout(wordReveal,500);
+          // ✅ Play hype track — user has already tapped (countdown ticks on load,
+          //    but first real interaction is page load tap or any click before this)
+          //    Using setTimeout gives API time to init; playTrack queues if not ready yet
+          setTimeout(()=>playTrack(1), 800);
+        },500);
+      },200);
+    }
+  },300);
+}
+setTimeout(tick,950);
+
+/* ══════════════════════════════════
+   WORD-BY-WORD REVEAL
+══════════════════════════════════ */
+function wordReveal(){
+  const happyEl=document.getElementById('hb-happy');
+  const nameEl=document.getElementById('hb-name');
+  const subEl=document.getElementById('hb-sub');
+  'happy birthday'.split(' ').forEach((w,i)=>{
+    const s=document.createElement('span'); s.className='word';
+    s.textContent=w+(i===0?' ':''); happyEl.appendChild(s);
+  });
+  ['Shubhi ✦'].forEach(w=>{
+    const s=document.createElement('span'); s.className='word'; s.textContent=w; nameEl.appendChild(s);
+  });
+  const all=[...happyEl.querySelectorAll('.word'),...nameEl.querySelectorAll('.word')];
+  all.forEach((w,i)=>{
+    setTimeout(()=>{
+      w.classList.add('show');
+      const r=w.getBoundingClientRect();
+      sparkBurst(r.left+r.width/2,r.top+r.height/2,6);
+    },i*160);
+  });
+  setTimeout(()=>{ subEl.style.opacity='1'; },all.length*160+200);
+}
+
+/* ══════════════════════════════════
+   MESSAGE
+══════════════════════════════════ */
+const MSG=
+`Hey Shubhi,
+
+✏️ Write your birthday message here.
+Replace this with your actual letter to her.
+
+Multiple lines work perfectly fine.
+
+Happy birthday 🌸`;
+
+const SIGN='— with love, always ♡';
+
+let msgDone=false;
+function revealMsg(){
+  if(msgDone)return; msgDone=true;
+  document.getElementById('tap-btn').style.cssText='opacity:.38;pointer-events:none;';
+  document.getElementById('msg-panel').classList.add('on');
+  // ✅ Switch to romantic track — this tap IS the user interaction, guaranteed autoplay
+  playTrack(2);
+  typeIt(MSG,'typed-msg',23,()=>{
+    const s=document.getElementById('msg-sign'); s.textContent=SIGN; s.style.opacity='1';
+    setTimeout(()=>document.getElementById('go-next').classList.add('show'),700);
+  });
+}
+function typeIt(txt,id,spd,cb){
+  const el=document.getElementById(id); el.innerHTML=''; let i=0;
+  const c=document.createElement('span'); c.className='cur'; el.appendChild(c);
+  const iv=setInterval(()=>{
+    if(i<txt.length){
+      const ch=txt[i];
+      if(ch==='\n') c.before(document.createElement('br'));
+      else c.before(document.createTextNode(ch));
+      i++;
+    } else{ clearInterval(iv); c.remove(); if(cb)cb(); }
+  },spd);
+}
+
+/* ══════════════════════════════════
+   REASONS
+══════════════════════════════════ */
+const REASONS=[
+  {e:'😭',t:'because you\'re lowkey funny without even trying 😭'},
+  {e:'🌸',t:'because you\'ve become a part of my everyday without me even noticing when it happened.'},
+  {e:'😂',t:'because you try to be mysterious, but half the time you\'re just confusing.'},
+  {e:'✨',t:'because you make even the most ordinary days feel worth remembering.'},
+  {e:'🤦‍♀️',t:'because your dramatic reactions to small inconveniences are genuinely oscar-worthy.'},
+  {e:'💌',t:'because talking to you always leaves me feeling a little lighter. always.'},
+  {e:'🌷',t:'because you remember the tiny details no one else notices.'},
+  {e:'🥹',t:'because you\'re genuinely a good person.'},
+  {e:'🎀',t:'because your laugh is honestly the best sound. don\'t argue with me.'},
+  {e:'💫',t:'because it\'s you… and somehow that\'s enough for me.'},
+];
+const FINAL_AT=7; let shown=0,used=[];
+const dotsEl=document.getElementById('dots');
+REASONS.forEach((_,i)=>{ const d=document.createElement('div'); d.className='dot'; d.id='d'+i; dotsEl.appendChild(d); });
+function showReason(){
+  if(used.length===REASONS.length) used=[];
+  let idx; do{ idx=~~(Math.random()*REASONS.length); }while(used.includes(idx));
+  used.push(idx);
+  const r=REASONS[idx];
+  const card=document.getElementById('r-card');
+  card.classList.remove('pop'); void card.offsetWidth;
+  card.innerHTML=`<div class="r-num">reason no. ${String(shown+1).padStart(2,'0')}</div><div class="r-emoji">${r.e}</div><div class="r-text">${r.t}</div>`;
+  card.classList.add('pop');
+  const dot=document.getElementById('d'+shown); if(dot) dot.classList.add('on');
+  shown++;
+  if(shown>=FINAL_AT) setTimeout(()=>document.getElementById('final-wrap').classList.add('on'),500);
+  if(shown>=REASONS.length) document.getElementById('r-btn').disabled=true;
+}
+</script>
+</body>
+</html>
